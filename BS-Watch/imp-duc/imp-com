@@ -1,0 +1,3 @@
+cat trip.com.passive | deduplicate --sort | gf xss | anew trip.com.xss
+cat trip.com.xss | httpx -status-code -silent -no-color -mc 200 > trip.com.xsslive
+cat trip.com.xsslive | kxss >>> dalfox pipe

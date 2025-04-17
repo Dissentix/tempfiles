@@ -1,0 +1,41 @@
+https://careers.trip.com/api/oversea/getShareJobMeta/3097/?host=careers.trip.com >>>>>> open-r
+
+POST https://careers.trip.com/api/oversea/getShareJobMeta/3097/ % _method >>>>>>reflect
+
+POST /api/oversea/getShareJobMeta/3097/?_method=test<script>alert(1)</script>  >>>>>>>>>>> blocked by envoy waf
+
+
+https://travelagents.trip.com/?mamad=ahmad 
+
+
+-----------------------------------------------------------------------------------------
+
+https://ebooking.trip.com/restapi/soa2/23518/getIpInfo?_fxpcqlniredt=09031076215866905575&x-traceID=09031076215866905575-1727075633518-3200929
+https://ebooking.trip.com/restapi/soa2/23518/getIpInfo?_fxpcqlniredt=09031082310908030237&x-traceID=09031082310908030237-1721645035848-9075866
+https://ebooking.trip.com/restapi/soa2/23518/getIpInfo?_fxpcqlniredt=09031084212733474564&x-traceID=09031084212733474564-1723664965551-1184930
+----------------------
+https://ebooking.trip.com/restapi/soa2/23515/queryUserAndHotelInfo?_fxpcqlniredt=09031031213859057913&x-traceID=09031031213859057913-1667541395230-5904149
+https://ebooking.trip.com/restapi/soa2/30544/queryUserAndHotelInfo?_fxpcqlniredt=09031086313266331029&x-traceID=09031086313266331029-1735532364061-3839739
+https://ebooking.trip.com/restapi/soa2/23515/queryUserAndHotelInfo?_fxpcqlniredt=09031031213859057913&x-traceID=09031031213859057913-1667640498374-6274091
+-----------------------
+https://ebooking.trip.com/restapi/soa2/23518/getHelpCenterArticle?_fxpcqlniredt=09031112310908030898&x-traceID=09031112310908030898-1721645036551-7886199
+https://ebooking.trip.com/restapi/soa2/23518/getHelpCenterArticle?_fxpcqlniredt=09031166112733474754&x-traceID=09031166112733474754-1723664965884-2671615
+https://ebooking.trip.com/restapi/soa2/23518/getHelpCenterArticle?_fxpcqlniredt=09031092115866906694&x-traceID=09031092115866906694-1727075634731-1561809
+--------------------
+https://ebooking.trip.com/restapi/soa2/24278/getTelByLocale?_fxpcqlniredt=09031145412733474916&x-traceID=09031145412733474916-1723664966139-4045118
+https://ebooking.trip.com/restapi/soa2/24278/getTelByLocale?_fxpcqlniredt=09031086313266331029&x-traceID=09031086313266331029-1735532364826-6516734
+https://ebooking.trip.com/restapi/soa2/24278/getTelByLocale?_fxpcqlniredt=09031170315866907344&x-traceID=09031170315866907344-1727075635167-3528798
+https://ebooking.trip.com/restapi/soa2/24278/getTelByLocale?_fxpcqlniredt=09031125210908031168&x-traceID=09031125210908031168-1721645036817-423953
+--------------------
+https://ebooking.trip.com/restapi/soa2/24278/queryCountryAreaCodeList?_fxpcqlniredt=09031082310908030237&x-traceID=09031082310908030237-1721645036261-3369833
+https://ebooking.trip.com/restapi/soa2/24278/queryCountryAreaCodeList?_fxpcqlniredt=09031092115866906694&x-traceID=09031092115866906694-1727075634946-6202937
+---------------------
+https://ebooking.trip.com/restapi/soa2/24278/getEbkDownloadLinks?_fxpcqlniredt=09031086313266331029&x-traceID=09031086313266331029-1735532364825-6688337
+----------------------
+https://ebooking.trip.com/restapi/soa2/23515/queryUserQconfig?_fxpcqlniredt=09031031213859057913&x-traceID=09031031213859057913-1667640505827-7435656
+
+
+----------------------------------------------------------------
+
+
+https://fly.trip.com/transfer?redirect_uri=https%3A%2F%2Fhk.trip.com >>>>>>>>>>>>>>> full auth request if bypass url parser akamai WAF its done !!
