@@ -1,0 +1,98 @@
+
+abuseipdb () {
+    curl -s "https://www.abuseipdb.com/whois/$1" -H "user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" -b "abuseipdb_session=YOUR-SESSION" | grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox} --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox} -E '<li>\w.*</li>' | sed -E 's/<\/?li>//g' | sed "s|$|.$1|"
+}
+
+
+crtsh () {
+    query=$(cat <<-END
+        SELECT
+            ci.NAME_VALUE
+        FROM
+            certificate_and_identities ci
+        WHERE
+            plainto_tsquery('certwatch', '$1') @@ identities(ci.CERTIFICATE)
+END
+)
+    echo "$query" | psql -t -h crt.sh -p 5432 -U guest certwatch | sed 's/ //g' | grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox} -E --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox} ".*.\.$1" | sed 's/*\.//g' | tr '[:upper:]' '[:lower:]' | sort -u
+}
+
+
+get_certificate () {
+	openssl s_client -showcerts -servername $1 -connect $1:443 2> /dev/null | openssl x509 -inform pem -noout -text
+}
+
+get_certificate_nuclei () {
+	input = ""
+    while read line
+    do
+            input="$input$line\n"
+    done < "${1:-/dev/stdin}"
+    echo $input | nuclei -t ~/nuclei-template/ssl.yaml -silent -j | jq -r '.["extracted_results"][]'
+}
+
+
+httpx_full () {
+    input="" 
+    while read line
+    do
+        echo $line | httpx -silent -follow-host-redirects -title -status-code -cdn -tech-detect -H "User-Agent: Mozilla/5.0    (Macintosh; Intel Mac OS X 10.15; rv:108.0) Gecko/20100101 Firefo/108.0" -H "Referer: $line"
+    done < "${1:-/dev/stdin}"
+}
+
+
+alias nice_passive="python3 /root/tools/nice_passive.py"
+
+
+nice_katana () {
+    while read line
+    do
+        host=$(echo $line | unfurl format %d)
+        echo "$line" | katana -js-crawl -jsluice -known-files all -automatic-form-fill -silent -crawl-scope $host -extension-filter json,js,fnt,ogg,css,jpg,jpe,png,svg,img,gif,exe,mp4,flv,pdf,doc,ogv,webm,wmv,webp,mov,mp3,m4a,m4p,ppt,pptx,scss,tif,tiff,ttf,otf,woff,woff2,bmp,ico,eot,htc,swf,rtf,image,rf,txt,ml,ip | tee ${host}.katana
+    done < "${1:-/dev/stdin}"
+}
+
+
+param_maker(){
+        filename="$1"
+        value="$2"
+        counter=0
+        query_string="?"
+        while IFS= read -r keyword || [ -n "$keyword" ]
+        do
+                if [ -n "$keyword" ]
+                then
+                        counter=$((counter+1))
+                        query_string="${query_string}${keyword}=${value}${counter}&"
+                fi
+                if [ $counter -eq 25 ]
+                then
+                        echo "${query_string%?}"
+                        query_string="?"
+                        counter=0
+                fi
+        done < "$filename"
+        if [ $counter -gt 0 ]
+        then
+                echo "${query_string%?}"
+        fi
+}
+
+
+wlist_maker () {
+    seq 1 100 > list.tmp
+    echo $1 >> list.tmp
+    seq 101 300 >> list.tmp
+    echo $1 >> list.tmp
+    seq 301 600 >> list.tmp
+}
+
+httpxSpark () {
+    if [ -z "$1" ] && [ -t 0 ]; then
+        echo "Error: No input provided (use file or pipe)"
+        return 1
+    fi
+    while read -r line; do
+        echo "$line" | httpx -silent -follow-host-redirects -title -status-code -cdn -tech-detect -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:108.0) Gecko/20100101 Firefox/108.0" -H "Referer: $line"
+    done < "${1:-/dev/stdin}"
+}
