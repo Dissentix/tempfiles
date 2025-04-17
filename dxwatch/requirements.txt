@@ -1,0 +1,10 @@
+requests
+pyyaml
+rich
+discord-webhook
+# Note: You need to install the following tools manually:
+# - subfinder: go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+# - dnsx: go install github.com/projectdiscovery/dnsx/cmd/dnsx@latest
+# - httpx: go install github.com/projectdiscovery/httpx/cmd/httpx@latest
+# - anew: go install github.com/tomnomnom/anew@latest
+# - psql: Install PostgreSQL client (e.g., apt install postgresql-client on Debian/Ubuntu)
