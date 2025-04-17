@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>postMessage 1</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div id="table">
+    <div id="centeralign">
+      <h1>postMessage 1</h1>
+      <p>
+        Can you exploit the postMessage? easy one :]
+      </p>
+    </div>
+  </div>
+  <script>
+    var postMessageHandler = function(e) {
+      var msg = e.data;
+      if (msg.isActive) {
+        var msgObj = eval(msg.content);
+        document.write("ok")
+      }
+    }
+    window.addEventListener('message', postMessageHandler, false);
+  </script>
+</body>
+
+</html>
